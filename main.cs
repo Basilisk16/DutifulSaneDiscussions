@@ -15,7 +15,7 @@ class MainClass
   }
   static [] int Pomeranje_niza(int [] niz)
   {
-    niz2 = new int [26];
+    niz2 = new int [26]; 
     for(int i = 0; i<25;i++)
     {
       niz2[i] = niz[i+1];
