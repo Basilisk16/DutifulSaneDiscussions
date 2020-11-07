@@ -1,28 +1,27 @@
 using System;
 class MainClass 
 {
-  public static string[] PromenaRedosleda()
+  
+  static string[] Pomeranje_niza(string [] niz)
   {
-    string[] a= new string[26];
-    for(int i=0; i < 26; i++)
+    niz = new string [26];
+    string j = " ";
+    string k = niz[0];
+    for(int i = 1; i<niz.Length;i++)
     {
-      string s = Console.ReadLine();
-      string [] niz = s.Split(" ");
-      for (int j = 0; j < 26; j++)
+      if(i!=niz.Length-1)
       {
-        a[j]=niz[j];
+        j = niz[i];
+        niz[i]=k;
+        k = j;
+      }
+      else
+      {
+        niz[0]=niz[25];
+        niz[25]=j;
       }
     }
-    return a;
-  }
-  static int[] Pomeranje_niza(int [] niz)
-  {
-    niz2 = new int [26]; 
-    for(int i = 0; i<25;i++)
-    {
-      niz2[i] = niz[i+1];
-    }
-    niz2[25] = niz[0];
+    return niz;
   }
   
   public static void Main (string[] args)
@@ -32,25 +31,33 @@ class MainClass
     string[] PrviRotor = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
     string[] DrugiRotor = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
     string[] Reflektori = { "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-    
-    Console.WriteLine("Odaberi sifrovanje ili dešifrovanje. Pritisnite 0 za šifrovanje ili 1 za dešifrovanje: ");
-    int odabir = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine("Odaberi sifrovanje ili dešifrovanje. Pritisnite 0 za šifrovanje ili 1 za dešifrovanje: ");;
+    while((!int.TryParse(Console.ReadLine(),out int odabir)) ||odabir != 1 || odabir != 0)
+    { 
+      Console.WriteLine("Pogresan unos. Broj mora da bude 1 ili 0.");
+    }
     if(odabir==0)
+    {
       Console.WriteLine("da li zelite da promenite parametre? (DA/NE)");
       string promenaParametara = Console.ReadLine();
         if (promenaParametara == "DA")
         {
-          PrviRotor = PromenaRedosleda();
+       PrviRotor = PromenaRedosleda();
           DrugiRotor = PromenaRedosleda();
         }
-      Sifrovanje();
+      // Sifrovanje();
+    }
     else
     {
+      Console.WriteLine("tokom desifrovanja neophodno je zameniti parametre: ");
+      Console.WriteLine("Unesi elemente prvog rotora: ");
       PrviRotor = PromenaRedosleda();
+      Console.WriteLine("Unesi elemente drugog rotora: ");
       DrugiRotor = PromenaRedosleda();
+    Console.WriteLine("Unesi raspored reflektora: ");
       Reflektori = PromenaRedosleda();
 
-      Desifrovanje();
+    //  Desifrovanje();
 
     }
     Console.WriteLine("Da li želite da završite sa programom? (DA/NE)");
