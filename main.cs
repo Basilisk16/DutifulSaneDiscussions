@@ -63,6 +63,7 @@ class MainClass
     l3:
     Console.WriteLine("Pogresan unos probajte ponovo!");
     l4:
+    //Unos reci
     Console.Write("Unesite rec: ");
     string x = Console.ReadLine();
     x = x.ToUpper();
